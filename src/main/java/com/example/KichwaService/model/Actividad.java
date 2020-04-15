@@ -34,7 +34,7 @@ public class Actividad {
     //Creacion de una foreing key
     //union con la entidad Tema
     @ManyToOne
-    @JoinColumn(name = "id_tema")
+    @JoinColumn(name = "id_tema", referencedColumnName = "id_tema")
     private Tema tema;
     
     @Column(name="estado")
@@ -44,7 +44,7 @@ public class Actividad {
     private String nombre;
     
     //union con la entidad Palabra
-    @OneToOne(mappedBy = "actividad")
-    private Palabra palabra;
+//    @OneToOne(mappedBy = "actividad")
+//    private Palabra palabra;
     
 }

@@ -25,25 +25,25 @@ public class UsuarioController {
     @Autowired
     UsuarioRepository usuarioRepository;
     
-    @GetMapping("")
+    @GetMapping("/getListaUsuario")
     @CrossOrigin
     public List<Usuario> listarUsuarios(){
         return this.usuarioRepository.findAll();
     }    
     
-    @PostMapping("")
+    @PostMapping("/crearUsuario")
     @CrossOrigin
     public Usuario crearUsuario(@RequestBody Usuario u){
         return this.usuarioRepository.save(u);
     }
     
-    @DeleteMapping("/{id_usuario")
+    @DeleteMapping("/eliminar/{id_usuario}")
     @CrossOrigin
     public void eliminarUsuario(@PathVariable Long id_usuario){
         this.usuarioRepository.deleteById(id_usuario);
     }
     
-    @PutMapping("/{id_usuario}")
+    @PutMapping("/modificar/{id_usuario}")
     @CrossOrigin
     public Usuario modificarUsuario(@RequestBody Usuario u, @PathVariable Long id_usuario){
         this.usuarioRepository.deleteById(id_usuario);

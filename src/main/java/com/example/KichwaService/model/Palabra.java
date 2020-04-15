@@ -33,7 +33,7 @@ public class Palabra {
     //Creacion de una foreing key
     //union con la entidad Actividad
     @ManyToOne
-    @JoinColumn(name = "id_actividad")
+    @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
     private Actividad actividad;
     
     @Column(name = "palabra_esp")
@@ -50,5 +50,6 @@ public class Palabra {
     
     @Column(name = "descripcion")
     private String descripcion;
+
     
 }

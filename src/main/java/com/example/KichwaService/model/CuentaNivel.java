@@ -27,13 +27,13 @@ public class CuentaNivel {
     //Creacion de una foreing key
     //union con la entidad de Cuenta
     @ManyToOne
-    @JoinColumn(name = "id_cuenta")
+    @JoinColumn(name = "id_cuenta", referencedColumnName = "id_cuenta")
     private Cuenta cuenta;
     
     //Creacion de una foreing key
     //union con la entidad de Nivel
     @ManyToOne
-    @JoinColumn(name = "id_nivel")
+    @JoinColumn(name = "id_nivel", referencedColumnName = "id_nivel")
     private Nivel nivel;
     
     @Column(name = "estado")

@@ -25,25 +25,25 @@ public class CuentaController {
     @Autowired
     CuentaRepository cuentaRepository;
     
-    @GetMapping("")
+    @GetMapping("/obtenerListaCuenta")
     @CrossOrigin
     public List<Cuenta> listarCuentas(){
         return this.cuentaRepository.findAll();
     }
     
-    @PostMapping("")
+    @PostMapping("/crearCuenta")
     @CrossOrigin
     public Cuenta crearCuenta(@RequestBody Cuenta c){
         return this.cuentaRepository.save(c);
     }
     
-    @DeleteMapping("/{id_cuenta}")
+    @DeleteMapping("/eliminar/{id_cuenta}")
     @CrossOrigin
     public void eliminarCuenta(@PathVariable Long id_cuenta){
         this.cuentaRepository.deleteById(id_cuenta);
     }
     
-    @PutMapping("/{id_cuenta}")
+    @PutMapping("/modificar/{id_cuenta}")
     @CrossOrigin
     public Cuenta modificarCuenta(@RequestBody Cuenta c, @PathVariable Long id_cuenta){
         this.cuentaRepository.deleteById(id_cuenta);

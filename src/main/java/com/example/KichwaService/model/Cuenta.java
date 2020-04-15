@@ -43,11 +43,11 @@ public class Cuenta {
     private Usuario usuario;
     
     //union con la entidad MetaDiaria
-    @OneToMany(mappedBy="cuenta")
-    private Set<MetaDiaria> metaDiarias;
-    
+//    @OneToMany(mappedBy="cuenta")
+//    private Set<MetaDiaria> metaDiarias;
+
     //union con la entidad CuentaNivel
-    @OneToMany(mappedBy = "cuenta")
-    Set<CuentaNivel> cuentaNivels;
+//    @OneToMany(mappedBy = "cuenta")
+//    Set<CuentaNivel> cuentaNivels;
     
 }

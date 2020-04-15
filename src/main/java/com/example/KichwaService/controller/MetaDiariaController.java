@@ -24,25 +24,25 @@ public class MetaDiariaController {
     @Autowired
     MetaDiariaRepository metaDiariaRepository;
     
-    @GetMapping("")
+    @GetMapping("/obtenerListaMetaDiaria")
     @CrossOrigin
     public List<MetaDiaria> listarMetaDiarias(){
         return this.metaDiariaRepository.findAll();
     }
     
-    @PostMapping("")
+    @PostMapping("/crearMetaDiaria")
     @CrossOrigin
     public MetaDiaria crearMetaDiaria(@RequestBody MetaDiaria metaDiaria){
         return this.metaDiariaRepository.save(metaDiaria);
     }
     
-    @DeleteMapping("/{id_meta_diaria}")
+    @DeleteMapping("/eliminar/{id_meta_diaria}")
     @CrossOrigin
     public void eliminarMetaDiaria(@PathVariable Long id_meta_diaria){
         this.metaDiariaRepository.deleteById(id_meta_diaria);
     }
     
-    @PutMapping("/{id_meta_diaria}")
+    @PutMapping("/modificar/{id_meta_diaria}")
     @CrossOrigin
     public MetaDiaria modificarMetaDiaria(@RequestBody MetaDiaria metaDiaria, Long id_meta_diaria){
         this.metaDiariaRepository.deleteById(id_meta_diaria);

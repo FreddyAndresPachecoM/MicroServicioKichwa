@@ -37,10 +37,10 @@ public class Nivel {
     private String descripcion;
     
     //union con la entidad CuentaNivel
-    @OneToMany(mappedBy = "nivel")
-    Set<CuentaNivel> cuentaNivels;
+//    @OneToMany(mappedBy = "nivel")
+//    Set<CuentaNivel> cuentaNivels;
     
     //union con la entidad Tema
-    @OneToMany(mappedBy = "nivel")
-    Set<Tema> temas;
+//    @OneToMany(mappedBy = "nivel")
+//    Set<Tema> temas;
 }

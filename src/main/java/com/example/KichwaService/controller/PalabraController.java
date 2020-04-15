@@ -25,25 +25,25 @@ public class PalabraController {
     @Autowired
     PalabraRepository palabraRepository;
     
-    @GetMapping("")
+    @GetMapping("/obtenerListaPalabras")
     @CrossOrigin
     public List<Palabra> listarPalabras(){
         return this.palabraRepository.findAll();
     }
     
-    @PostMapping("")
+    @PostMapping("/crearPalabra")
     @CrossOrigin
     public Palabra crearPalabra(@RequestBody Palabra palabra){
         return this.palabraRepository.save(palabra);
     }
     
-    @DeleteMapping("/{id_palabra}")
+    @DeleteMapping("/eliminar/{id_palabra}")
     @CrossOrigin
     public void eliminarPalabra(@PathVariable Long id_palabra){
         this.palabraRepository.deleteById(id_palabra);
     }
     
-    @PutMapping("/{id_palabra}")
+    @PutMapping("/modificar/{id_palabra}")
     @CrossOrigin
     public Palabra modificarPalabra(@RequestBody Palabra palabra, Long id_palabra){
         this.palabraRepository.deleteById(id_palabra);

@@ -25,25 +25,25 @@ public class CuentaNivelController {
     @Autowired
     CuentaNivelRepository cuentaNivelRepository;
     
-    @GetMapping("")
+    @GetMapping("/obtenerListaCuentaNivel")
     @CrossOrigin
     public List<CuentaNivel> listarCuentaNiveles(){
         return this.cuentaNivelRepository.findAll();
     }
     
-    @PostMapping("")
+    @PostMapping("/crearCuentaNivel")
     @CrossOrigin
     public CuentaNivel crearCuentaNivel(@RequestBody CuentaNivel cuentaNivel){
         return this.cuentaNivelRepository.save(cuentaNivel);
     }
     
-    @DeleteMapping("/{id_cuenta_nivel}")
+    @DeleteMapping("/eliminar/{id_cuenta_nivel}")
     @CrossOrigin
     public void eliminarCuentaNivel(@PathVariable Long id_cuenta_nivel){
         this.cuentaNivelRepository.deleteById(id_cuenta_nivel);
     }
     
-    @PutMapping("/{id_cuenta_nivel")
+    @PutMapping("/modificar/{id_cuenta_nivel")
     @CrossOrigin
     public CuentaNivel modificarCuentaNivel(@RequestBody CuentaNivel cuentaNivel, @PathVariable Long id_cuenta_nivel){
         this.cuentaNivelRepository.deleteById(id_cuenta_nivel);

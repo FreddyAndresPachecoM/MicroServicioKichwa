@@ -25,25 +25,25 @@ public class ActividadController {
     @Autowired
     ActividadRepository actividadRepository;
     
-    @GetMapping("")
+    @GetMapping("/obtenerListaActividad")
     @CrossOrigin
     public List<Actividad> listarActividades(){
         return this.actividadRepository.findAll();
     }
     
-    @PostMapping("")
+    @PostMapping("/crearActividad")
     @CrossOrigin
     public Actividad crearActividad(@RequestBody Actividad a){
         return this.actividadRepository.save(a);
     }
     
-    @DeleteMapping("/{id_actividad}")
+    @DeleteMapping("/eliminar/{id_actividad}")
     @CrossOrigin
     public void eliminarActividad(@PathVariable Long id_actividad){
         this.actividadRepository.deleteById(id_actividad);
     }
     
-    @PutMapping("/{id_actividad")
+    @PutMapping("/modificar/{id_actividad")
     @CrossOrigin
     public Actividad modificarActividad(@RequestBody Actividad a, @PathVariable Long id_actividad){
         this.actividadRepository.deleteById(id_actividad);

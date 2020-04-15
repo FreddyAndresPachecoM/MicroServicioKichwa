@@ -24,25 +24,25 @@ public class TemaController {
     @Autowired
     TemaRepository temaRepository;
     
-    @GetMapping("")
+    @GetMapping("/obtenerListaTemas")
     @CrossOrigin
     public List<Tema> listarTemas(){
         return this.temaRepository.findAll();
     }
     
-    @PostMapping("")
+    @PostMapping("/crearTema")
     @CrossOrigin
     public Tema crearTema(@RequestBody Tema t){
         return this.temaRepository.save(t);
     }
     
-    @DeleteMapping("/{id_tema}")
+    @DeleteMapping("/eliminar/{id_tema}")
     @CrossOrigin
     public void eliminarTema(@PathVariable Long id_tema){
         this.temaRepository.deleteById(id_tema);
     }
     
-    @PutMapping("/{id_tema")
+    @PutMapping("/modificar/{id_tema")
     @CrossOrigin
     public Tema modificarTema(@RequestBody Tema t, @PathVariable Long id_tema){
         this.temaRepository.deleteById(id_tema);

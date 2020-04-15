@@ -25,25 +25,25 @@ public class NivelController {
     @Autowired
     NivelRepository nivelRepository;
     
-    @GetMapping("")
+    @GetMapping("/obtenerListaNiveles")
     @CrossOrigin
     public List<Nivel> listarNiveles(){
         return this.nivelRepository.findAll();
     }
     
-    @PostMapping("")
+    @PostMapping("/crearNivel")
     @CrossOrigin
     public Nivel crearNivel(@RequestBody Nivel nivel){
         return this.nivelRepository.save(nivel);
     }
     
-    @DeleteMapping("/{id_nivel}")
+    @DeleteMapping("/eliminar/{id_nivel}")
     @CrossOrigin
     public void eliminarNivel(@PathVariable Long id_nivel){
         this.nivelRepository.deleteById(id_nivel);
     }
     
-    @PutMapping("/{id_nivel}")
+    @PutMapping("/modificar/{id_nivel}")
     @CrossOrigin
     public Nivel modificarNivel(@RequestBody Nivel nivel, @PathVariable Long id_nivel){
         this.nivelRepository.deleteById(id_nivel);

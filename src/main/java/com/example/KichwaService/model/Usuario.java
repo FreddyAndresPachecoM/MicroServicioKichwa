@@ -6,9 +6,8 @@
 package com.example.KichwaService.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.*;
-
 import javax.persistence.*;
+import lombok.*;
 
 @Data
 
@@ -36,8 +35,9 @@ public class Usuario {
     @Column(name = "foto")
     private String foto;
     
+        
     //union con la entidad cuenta
-    @OneToOne(mappedBy = "usuario")
-    private Cuenta cuenta;
-    
+//    @OneToOne(mappedBy = "usuario")
+//    private Cuenta cuenta;
+
 }

@@ -25,25 +25,25 @@ public class CuestionarioController {
     @Autowired
     CuestionarioRepository cuestionarioRepository;
     
-    @GetMapping("")
+    @GetMapping("/obtenerListaCuestionario")
     @CrossOrigin
     public List<Cuestionario> listarCuestionarios(){
         return this.cuestionarioRepository.findAll();
     }
     
-    @PostMapping("")
+    @PostMapping("/crearCuestionario")
     @CrossOrigin
     public Cuestionario crearCuestionario(@RequestBody Cuestionario cuestionario){
         return this.cuestionarioRepository.save(cuestionario);
     }
     
-    @DeleteMapping("/{id_cuestionario}")
+    @DeleteMapping("/eliminar/{id_cuestionario}")
     @CrossOrigin
     public void eliminarCuestionario(@PathVariable Long id_cuestionario){
         this.cuestionarioRepository.deleteById(id_cuestionario);
     }
     
-    @PutMapping("/{id_cuestionario}")
+    @PutMapping("/modificar/{id_cuestionario}")
     @CrossOrigin
     public Cuestionario modificarCuestionario(@RequestBody Cuestionario cuestionario, @PathVariable Long id_cuestionario){
         this.cuestionarioRepository.deleteById(id_cuestionario);

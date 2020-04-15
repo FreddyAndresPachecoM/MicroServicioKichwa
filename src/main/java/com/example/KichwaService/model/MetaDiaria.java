@@ -38,7 +38,7 @@ public class MetaDiaria {
     
     //union con la entidad Cuenta
     @ManyToOne
-    @JoinColumn(name="id_cuenta", nullable=false)
+    @JoinColumn(name="id_cuenta", referencedColumnName = "id_cuenta")
     private Cuenta cuenta;
     
 }

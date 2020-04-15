@@ -34,7 +34,7 @@ public class Tema {
     //Creacion de una foreing key
     //union con la entidad Nivel
     @ManyToOne
-    @JoinColumn(name = "id_nivel")
+    @JoinColumn(name = "id_nivel", referencedColumnName = "id_nivel")
     private Nivel nivel;
     
     
@@ -48,10 +48,12 @@ public class Tema {
     private double porcentaje;
     
     //union con la entidad Cuestionario
-    @OneToOne(mappedBy = "tema")
-    private Cuestionario cuestionario;
-    
+//    @OneToOne(mappedBy = "tema")
+//    private Cuestionario cuestionario;
+//    
     //union con la entidad Actividad
-    @OneToOne(mappedBy = "tema")
-    private Actividad actividad;
+//    @OneToOne(mappedBy = "tema")
+//    private Actividad actividad;
+
+    
 }
