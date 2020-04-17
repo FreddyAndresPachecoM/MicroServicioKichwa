@@ -13,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import lombok.*;
 
 @Data
@@ -32,20 +31,20 @@ public class Tema {
     private Long id;
     
     //Creacion de una foreing key
-    //union con la entidad Nivel
+    //union con la entidad Actividad
     @ManyToOne
-    @JoinColumn(name = "id_nivel", referencedColumnName = "id_nivel")
-    private Nivel nivel;
+    @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
+    private Actividad actividad;
+//    @JoinTable(name = "id_nivel", joinColumns = @JoinColumn(name = "id_tema"),
+//            inverseJoinColumns = @JoinColumn(name = "id_nivel"))
     
     
-    @Column (name="tema")
-    private String tema;
+    @Column (name="nombre")
+    private String nombre;
     
-    @Column(name = "estado")
-    private boolean estado;
-    
-    @Column(name = "porcentaje")
-    private double porcentaje;
+    @Column(name = "descripcion")
+    private String descripcion;
+
     
     //union con la entidad Cuestionario
 //    @OneToOne(mappedBy = "tema")
@@ -55,5 +54,18 @@ public class Tema {
 //    @OneToOne(mappedBy = "tema")
 //    private Actividad actividad;
 
+
+    public Tema(Long id) {
+        super();
+        this.id = id;
+    }
+
+    public Tema(String nombre, String descripcion) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
+    
+    
+    
     
 }

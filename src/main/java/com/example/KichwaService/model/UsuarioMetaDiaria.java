@@ -6,12 +6,15 @@
 package com.example.KichwaService.model;
 
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import lombok.*;
 
@@ -24,21 +27,30 @@ import lombok.*;
 
 
 @Entity
-public class MetaDiaria {
+public class UsuarioMetaDiaria {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_meta_diaria")
+    @Column(name = "id_usu_met_dia")
     private Long id;
     
-    @Column (name = "min_exp")
-    private double min_exp;
-    
-    @Column (name = "fecha_inicia")
-    private Date fecha_inicia;
-    
-    //union con la entidad Cuenta
     @ManyToOne
-    @JoinColumn(name="id_cuenta", referencedColumnName = "id_cuenta")
-    private Cuenta cuenta;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    private Usuario usuario;
+    
+    @Column(name="estado")
+    private boolean estado;
+    @Column(name = "fecha")
+    private Date fecha;
+
+
+    public UsuarioMetaDiaria(Long id) {
+        this.id = id;
+    }  
+
+    public UsuarioMetaDiaria(boolean estado, Date fecha) {
+        this.estado = estado;
+        this.fecha = fecha;
+    }
+    
     
 }

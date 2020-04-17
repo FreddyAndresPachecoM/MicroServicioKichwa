@@ -5,13 +5,9 @@
  */
 package com.example.KichwaService.repository;
 
-import com.example.KichwaService.model.Cuenta;
+import com.example.KichwaService.model.Leccion;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-/**
- *
- * @author Asrock Gamer
- */
-public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
+public interface LeccionRepository extends JpaRepository<Leccion, Long>{
     
 }

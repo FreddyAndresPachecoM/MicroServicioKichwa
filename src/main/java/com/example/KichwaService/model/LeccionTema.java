@@ -6,16 +6,14 @@
 package com.example.KichwaService.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import java.util.Set;
-import javax.persistence.CascadeType;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import lombok.*;
 
 @Data
@@ -25,29 +23,37 @@ import lombok.*;
 @Getter()
 @Setter()
 
-
 @Entity
-public class Cuenta {
+public class LeccionTema {
     @JsonBackReference
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_cuenta")
+    @Column(name = "id_lec_tem")
     private Long id;
     
-    @Column(name="avance_total")
-    private double avance;    
-        
-    //union con la entidad usuario
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_usuario",referencedColumnName = "id_usuario")
-    private Usuario usuario;
+    @ManyToOne
+    @JoinColumn(name = "id_tem_act",referencedColumnName = "id_tem_act")
+    private TemaActividad temaActividad;
     
-    //union con la entidad MetaDiaria
-//    @OneToMany(mappedBy="cuenta")
-//    private Set<MetaDiaria> metaDiarias;
+    @ManyToOne
+    @JoinColumn(name = "id_leccion",referencedColumnName = "id_leccion")
+    private Leccion leccion;
+    
+    @Column(name="estado")
+    private boolean estado;
+    
+    @Column(name = "fecha")
+    private Date fecha;
 
-    //union con la entidad CuentaNivel
-//    @OneToMany(mappedBy = "cuenta")
-//    Set<CuentaNivel> cuentaNivels;
+    public LeccionTema(Long id) {
+        super();
+        this.id = id;
+    }
+
+    public LeccionTema(boolean estado, Date fecha) {
+        this.estado = estado;
+        this.fecha = fecha;
+    }
+    
     
 }

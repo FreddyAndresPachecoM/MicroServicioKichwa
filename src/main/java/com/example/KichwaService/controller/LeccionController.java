@@ -5,8 +5,9 @@
  */
 package com.example.KichwaService.controller;
 
-import com.example.KichwaService.model.Nivel;
-import com.example.KichwaService.repository.NivelRepository;
+import com.example.KichwaService.model.Leccion;
+import com.example.KichwaService.repository.ActividadRepository;
+import com.example.KichwaService.repository.LeccionRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,33 +21,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/nivel")
-public class NivelController {
+@RequestMapping("/leccion")
+public class LeccionController {
     @Autowired
-    NivelRepository nivelRepository;
+    LeccionRepository leccionRepository;
     
-    @GetMapping("/obtenerListaNiveles")
+    @GetMapping("/obtenerListaLeccion")
     @CrossOrigin
-    public List<Nivel> listarNiveles(){
-        return this.nivelRepository.findAll();
+    public List<Leccion> listaLeccion(){
+        return this.leccionRepository.findAll();
     }
     
-    @PostMapping("/crearNivel")
+    @PostMapping("/crearLeccion")
     @CrossOrigin
-    public Nivel crearNivel(@RequestBody Nivel nivel){
-        return this.nivelRepository.save(nivel);
+    public Leccion crearLeccion(@RequestBody Leccion leccion){
+        return this.leccionRepository.save(leccion);
     }
     
-    @DeleteMapping("/eliminar/{id_nivel}")
+    @DeleteMapping("/eliminar/{id_leccion}")
     @CrossOrigin
-    public void eliminarNivel(@PathVariable Long id_nivel){
-        this.nivelRepository.deleteById(id_nivel);
+    public void eliminarLeccion(@PathVariable Long id_leccion){
+        this.leccionRepository.deleteById(id_leccion);
     }
     
-    @PutMapping("/modificar/{id_nivel}")
+    @PutMapping("/modificar/{id_leccion}")
     @CrossOrigin
-    public Nivel modificarNivel(@RequestBody Nivel nivel, @PathVariable Long id_nivel){
-        this.nivelRepository.deleteById(id_nivel);
-        return this.nivelRepository.save(nivel);
+    public Leccion modificarLeccion(@RequestBody Leccion leccion, @PathVariable Long id_leccion){
+        this.leccionRepository.deleteById(id_leccion);
+        return this.leccionRepository.save(leccion);
     }
 }

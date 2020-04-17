@@ -5,7 +5,7 @@
  */
 package com.example.KichwaService.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.util.Date;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,33 +25,39 @@ import lombok.*;
 @Getter()
 @Setter()
 
+
 @Entity
-public class Actividad {
-    @JsonBackReference
+public class TemaActividad {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_actividad")
+    @Column(name = "id_tem_act")
     private Long id;
-
-    @Column(name = "nombre")
-    private String nombre;
     
-    @Column(name = "descripcion")
-    private String descripcion;
-    //union con la entidad Palabra
-//    @OneToOne(mappedBy = "actividad")
-//    private Palabra palabra;
+    @ManyToOne
+    @JoinColumn(name = "id_act_usu", referencedColumnName = "id_act_usu")
+    private ActividadUsuario actividadUsuario;
+    
+    @ManyToOne
+    @JoinColumn(name ="id_tema", referencedColumnName = "id_tema")
+    private Tema tema;
+    
+    @Column(name = "estado")
+    private boolean estado;
+    
+    @Column(name = "fecha")
+    private Date fecha;
 
-    public Actividad(String nombre, String descripcion) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-    }
-   
-
-    public Actividad(Long id) {
+    public TemaActividad(Long id) {
         super();
         this.id = id;
     }
+
+    public TemaActividad(boolean estado, Date fecha) {
+        this.estado = estado;
+        this.fecha = fecha;
+    }
+    
+    
     
     
 }

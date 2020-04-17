@@ -44,9 +44,9 @@ public class TemaController {
     
     @PutMapping("/modificar/{id_tema")
     @CrossOrigin
-    public Tema modificarTema(@RequestBody Tema t, @PathVariable Long id_tema){
+    public Tema modificarTema(@RequestBody Tema tema, @PathVariable Long id_tema){
         this.temaRepository.deleteById(id_tema);
-        return this.temaRepository.save(t);
+        return this.temaRepository.save(tema);
     }
     
 }

@@ -5,10 +5,10 @@
  */
 package com.example.KichwaService.repository;
 
-import com.example.KichwaService.model.UsuarioMetaDiaria;
+import com.example.KichwaService.model.Actividad;
+import com.example.KichwaService.model.ActividadUsuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-
-public interface MetaDiariaRepository extends JpaRepository<UsuarioMetaDiaria, Long> {
+public interface ActividadUsuarioRepository extends JpaRepository<ActividadUsuario, Long>{
     
 }

@@ -5,13 +5,9 @@
  */
 package com.example.KichwaService.repository;
 
-import com.example.KichwaService.model.Nivel;
+import com.example.KichwaService.model.UsuarioMetaDiaria;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-/**
- *
- * @author Asrock Gamer
- */
-public interface NivelRepository extends JpaRepository<Nivel, Long> {
+public interface UsuarioMetaDiariaRepository extends JpaRepository<UsuarioMetaDiaria, Long>{
     
 }

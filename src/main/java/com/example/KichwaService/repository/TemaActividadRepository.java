@@ -5,13 +5,9 @@
  */
 package com.example.KichwaService.repository;
 
-import com.example.KichwaService.model.Cuestionario;
+import com.example.KichwaService.model.TemaActividad;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-/**
- *
- * @author Asrock Gamer
- */
-public interface CuestionarioRepository  extends JpaRepository<Cuestionario, Long>{
+public interface TemaActividadRepository extends JpaRepository<TemaActividad, Long>{
     
 }

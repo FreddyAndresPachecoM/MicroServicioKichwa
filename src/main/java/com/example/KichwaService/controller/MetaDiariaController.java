@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package com.example.KichwaService.controller;
-import com.example.KichwaService.model.MetaDiaria;
+import com.example.KichwaService.model.UsuarioMetaDiaria;
 import com.example.KichwaService.repository.MetaDiariaRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +26,13 @@ public class MetaDiariaController {
     
     @GetMapping("/obtenerListaMetaDiaria")
     @CrossOrigin
-    public List<MetaDiaria> listarMetaDiarias(){
+    public List<UsuarioMetaDiaria> listarMetaDiarias(){
         return this.metaDiariaRepository.findAll();
     }
     
     @PostMapping("/crearMetaDiaria")
     @CrossOrigin
-    public MetaDiaria crearMetaDiaria(@RequestBody MetaDiaria metaDiaria){
+    public UsuarioMetaDiaria crearMetaDiaria(@RequestBody UsuarioMetaDiaria metaDiaria){
         return this.metaDiariaRepository.save(metaDiaria);
     }
     
@@ -44,7 +44,7 @@ public class MetaDiariaController {
     
     @PutMapping("/modificar/{id_meta_diaria}")
     @CrossOrigin
-    public MetaDiaria modificarMetaDiaria(@RequestBody MetaDiaria metaDiaria, Long id_meta_diaria){
+    public UsuarioMetaDiaria modificarMetaDiaria(@RequestBody UsuarioMetaDiaria metaDiaria, Long id_meta_diaria){
         this.metaDiariaRepository.deleteById(id_meta_diaria);
         return this.metaDiariaRepository.save(metaDiaria);
     }

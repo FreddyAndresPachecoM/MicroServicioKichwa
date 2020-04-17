@@ -45,9 +45,9 @@ public class UsuarioController {
     
     @PutMapping("/modificar/{id_usuario}")
     @CrossOrigin
-    public Usuario modificarUsuario(@RequestBody Usuario u, @PathVariable Long id_usuario){
+    public Usuario modificarUsuario(@RequestBody Usuario usuario, @PathVariable Long id_usuario){
         this.usuarioRepository.deleteById(id_usuario);
-        return this.usuarioRepository.save(u);
+        return this.usuarioRepository.save(usuario);
     }
             
 }

@@ -27,17 +27,36 @@ public class Usuario {
     @Column(name = "correo")
     private String correo;    
     @Column(name = "nombre")
-    private String name;    
+    private String name;  
+    @Column(name = "url_foto")
+    private String url_foto;
+    @Column(name ="sexo")
+    private String sexo;
     @Column(name = "password")
     private String password;    
-    @Column(name = "razon")
-    private String razon;    
-    @Column(name = "foto")
-    private String foto;
+    @Column(name = "motivo")
+    private String motivo;    
+    
     
         
     //union con la entidad cuenta
 //    @OneToOne(mappedBy = "usuario")
 //    private Cuenta cuenta;
+
+    
+    public Usuario(String correo, String name, String url_foto, String sexo, String password, String motivo) {
+        this.correo = correo;
+        this.name = name;
+        this.url_foto = url_foto;
+        this.sexo = sexo;
+        this.password = password;
+        this.motivo = motivo;
+    } 
+
+    public Usuario(Long id) {
+        super();
+        this.id = id;
+    } 
+    
 
 }

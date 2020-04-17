@@ -6,13 +6,13 @@
 package com.example.KichwaService.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import lombok.*;
 
 @Data
@@ -23,24 +23,29 @@ import lombok.*;
 @Setter()
 
 @Entity
-public class Nivel {
+public class Leccion {
     @JsonBackReference
     @Id
-    @Column (name="id_nivel")
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_leccion")
     private Long id;
     
-    @Column(name = "titulo")
-    private String titulo;
+    @ManyToOne
+    @JoinColumn(name = "id_tema", referencedColumnName = "id_tema")
+    private Tema tema;
     
-    @Column(name = "descripcion")
-    private String descripcion;
+    @Column(name = "nombre")
+    private String nombre;
+
+    public Leccion(Long id) {
+        super();
+        this.id = id;
+    }
+
+    public Leccion(String nombre) {
+        super();
+        this.nombre = nombre;
+    }
+       
     
-    //union con la entidad CuentaNivel
-//    @OneToMany(mappedBy = "nivel")
-//    Set<CuentaNivel> cuentaNivels;
-    
-    //union con la entidad Tema
-//    @OneToMany(mappedBy = "nivel")
-//    Set<Tema> temas;
 }
