@@ -26,13 +26,13 @@ public class LeccionController {
     @Autowired
     LeccionRepository leccionRepository;
     
-    @GetMapping("/obtenerListaLeccion")
+    @GetMapping("/listar")
     @CrossOrigin
     public List<Leccion> listaLeccion(){
         return this.leccionRepository.findAll();
     }
     
-    @PostMapping("/crearLeccion")
+    @PostMapping("/crear")
     @CrossOrigin
     public Leccion crearLeccion(@RequestBody Leccion leccion){
         return this.leccionRepository.save(leccion);

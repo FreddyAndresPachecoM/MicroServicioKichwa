@@ -25,13 +25,13 @@ public class ActividadController {
     @Autowired
     ActividadRepository actividadRepository;
     
-    @GetMapping("/obtenerListaActividad")
+    @GetMapping("/listar")
     @CrossOrigin
     public List<Actividad> listarActividades(){
         return this.actividadRepository.findAll();
     }
     
-    @PostMapping("/crearActividad")
+    @PostMapping("/crear")
     @CrossOrigin
     public Actividad crearActividad(@RequestBody Actividad a){
         return this.actividadRepository.save(a);

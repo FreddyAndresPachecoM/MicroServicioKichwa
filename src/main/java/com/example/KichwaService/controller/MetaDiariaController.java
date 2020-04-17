@@ -24,13 +24,13 @@ public class MetaDiariaController {
     @Autowired
     MetaDiariaRepository metaDiariaRepository;
     
-    @GetMapping("/obtenerListaMetaDiaria")
+    @GetMapping("/listar")
     @CrossOrigin
     public List<UsuarioMetaDiaria> listarMetaDiarias(){
         return this.metaDiariaRepository.findAll();
     }
     
-    @PostMapping("/crearMetaDiaria")
+    @PostMapping("/crear")
     @CrossOrigin
     public UsuarioMetaDiaria crearMetaDiaria(@RequestBody UsuarioMetaDiaria metaDiaria){
         return this.metaDiariaRepository.save(metaDiaria);

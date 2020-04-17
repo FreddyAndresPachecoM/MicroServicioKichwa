@@ -24,13 +24,13 @@ public class TemaController {
     @Autowired
     TemaRepository temaRepository;
     
-    @GetMapping("/obtenerListaTemas")
+    @GetMapping("/listar")
     @CrossOrigin
     public List<Tema> listarTemas(){
         return this.temaRepository.findAll();
     }
     
-    @PostMapping("/crearTema")
+    @PostMapping("/crear")
     @CrossOrigin
     public Tema crearTema(@RequestBody Tema t){
         return this.temaRepository.save(t);

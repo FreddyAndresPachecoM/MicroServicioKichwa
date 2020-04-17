@@ -26,7 +26,7 @@ public class TemaActividadController {
     @Autowired
     TemaActividadRepository temaActividadRepository;
     
-    @GetMapping("/obtenerLista")
+    @GetMapping("/listar")
     @CrossOrigin
     public List<TemaActividad> listaTemaActividads(){
         return this.temaActividadRepository.findAll();

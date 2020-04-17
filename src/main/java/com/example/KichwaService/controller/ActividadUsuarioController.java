@@ -6,7 +6,6 @@
 package com.example.KichwaService.controller;
 
 import com.example.KichwaService.model.ActividadUsuario;
-import com.example.KichwaService.repository.ActividadRepository;
 import com.example.KichwaService.repository.ActividadUsuarioRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +25,13 @@ public class ActividadUsuarioController {
     @Autowired
     ActividadUsuarioRepository actividadUsuarioRepository;
     
-    @GetMapping("/obtenerListaActividadUsuario")
+    @GetMapping("/listar")
     @CrossOrigin
     public List<ActividadUsuario> listaActividadUsuario(){
         return this.actividadUsuarioRepository.findAll();
     }
     
-    @PostMapping("/crearActividadUsuario")
+    @PostMapping("/crear")
     @CrossOrigin
     public ActividadUsuario crearActividadUsuario(@RequestBody ActividadUsuario actividadUsuario){
         return this.actividadUsuarioRepository.save(actividadUsuario);

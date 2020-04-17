@@ -25,13 +25,13 @@ public class PalabraController {
     @Autowired
     PalabraRepository palabraRepository;
     
-    @GetMapping("/obtenerListaPalabras")
+    @GetMapping("/listar")
     @CrossOrigin
     public List<Palabra> listarPalabras(){
         return this.palabraRepository.findAll();
     }
     
-    @PostMapping("/crearPalabra")
+    @PostMapping("/crear")
     @CrossOrigin
     public Palabra crearPalabra(@RequestBody Palabra palabra){
         return this.palabraRepository.save(palabra);

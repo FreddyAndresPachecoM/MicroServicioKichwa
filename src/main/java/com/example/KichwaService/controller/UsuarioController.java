@@ -25,13 +25,13 @@ public class UsuarioController {
     @Autowired
     UsuarioRepository usuarioRepository;
     
-    @GetMapping("/getListaUsuario")
+    @GetMapping("/listar")
     @CrossOrigin
     public List<Usuario> listarUsuarios(){
         return this.usuarioRepository.findAll();
     }    
     
-    @PostMapping("/crearUsuario")
+    @PostMapping("/crear")
     @CrossOrigin
     public Usuario crearUsuario(@RequestBody Usuario u){
         return this.usuarioRepository.save(u);
