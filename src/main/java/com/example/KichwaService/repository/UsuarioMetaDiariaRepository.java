@@ -7,7 +7,9 @@ package com.example.KichwaService.repository;
 
 import com.example.KichwaService.model.UsuarioMetaDiaria;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UsuarioMetaDiariaRepository extends JpaRepository<UsuarioMetaDiaria, Long>{
     
 }

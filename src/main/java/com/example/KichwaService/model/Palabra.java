@@ -6,16 +6,15 @@
 package com.example.KichwaService.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import java.util.Set;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import lombok.*;
 
 @Data
@@ -26,7 +25,8 @@ import lombok.*;
 @Setter()
 
 @Entity
-public class Palabra {
+@Table(name = "palabra")
+public class Palabra implements Serializable {
     @JsonBackReference
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -59,6 +59,7 @@ public class Palabra {
     private String descripcion;
 
     public Palabra(String sig_esp, String sig_kich, String url_imagen, String url_audio, String descripcion) {
+        super();
         this.sig_esp = sig_esp;
         this.sig_kich = sig_kich;
         this.url_imagen = url_imagen;
@@ -71,6 +72,19 @@ public class Palabra {
         this.id = id;
     }
 
-    
+    public Palabra(Leccion leccion, String sig_esp, String sig_kich, String url_imagen, String url_audio, String descripcion) {
+        super();
+        this.leccion = leccion;
+        this.sig_esp = sig_esp;
+        this.sig_kich = sig_kich;
+        this.url_imagen = url_imagen;
+        this.url_audio = url_audio;
+        this.descripcion = descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return "Palabra{" + "id=" + id + ", leccion=" + leccion + ", sig_esp=" + sig_esp + ", sig_kich=" + sig_kich + ", url_imagen=" + url_imagen + ", url_audio=" + url_audio + ", descripcion=" + descripcion + '}';
+    }    
     
 }

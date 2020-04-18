@@ -5,11 +5,13 @@
  */
 package com.example.KichwaService.controller;
 
+import com.example.KichwaService.exception.ResourceNotFoundException;
 import com.example.KichwaService.model.UsuarioMetaDiaria;
-import com.example.KichwaService.repository.ActividadRepository;
 import com.example.KichwaService.repository.UsuarioMetaDiariaRepository;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +34,16 @@ public class UsuarioMetaDiariaController {
         return this.usuarioMetaDiariaRepository.findAll();
     }
     
+    @GetMapping("/buscar/{id_met_dia}")
+    @CrossOrigin
+    public ResponseEntity<UsuarioMetaDiaria> getUsuarioMetaDiariaById(@PathVariable(value = "id_met_dia") Long id_met_dia) 
+            throws ResourceNotFoundException{
+            UsuarioMetaDiaria usuarioMetaDiaria= usuarioMetaDiariaRepository.findById(id_met_dia)
+                    .orElseThrow(() -> new ResourceNotFoundException("UsuarioMetaDiaria not found for this id :: " + id_met_dia));
+        return ResponseEntity.ok().body(usuarioMetaDiaria);
+        
+    }    
+    
     @PostMapping("/crear")
     @CrossOrigin
     public UsuarioMetaDiaria crearUsuarioMetaDiaria(@RequestBody UsuarioMetaDiaria usuarioMetaDiaria){
@@ -46,8 +58,18 @@ public class UsuarioMetaDiariaController {
     
     @PutMapping("/modificar/{id_usu_met_dia}")
     @CrossOrigin
-    public UsuarioMetaDiaria modificarUsuarioMetaDiaria(@RequestBody UsuarioMetaDiaria usuarioMetaDiaria, @PathVariable Long id_usu_met_dia){
-        this.usuarioMetaDiariaRepository.deleteById(id_usu_met_dia);
-        return this.usuarioMetaDiariaRepository.save(usuarioMetaDiaria);
+//    public UsuarioMetaDiaria modificarUsuarioMetaDiaria(@RequestBody UsuarioMetaDiaria usuarioMetaDiaria, @PathVariable Long id_usu_met_dia){
+//        this.usuarioMetaDiariaRepository.deleteById(id_usu_met_dia);
+//        return this.usuarioMetaDiariaRepository.save(usuarioMetaDiaria);
+//    }
+    public ResponseEntity<UsuarioMetaDiaria> updateUsuarioMetaDiaria(@PathVariable (value = "id_met_dia") Long id_met_dia,
+            @Valid @RequestBody UsuarioMetaDiaria usuarioMetaDiariaDetails)throws ResourceNotFoundException{
+        UsuarioMetaDiaria usuarioMetaDiaria= usuarioMetaDiariaRepository.findById(id_met_dia)
+                .orElseThrow(() -> new ResourceNotFoundException("UsuarioMetaDiaria not found for this id :: " + id_met_dia));
+        usuarioMetaDiaria.setEstado(usuarioMetaDiariaDetails.isEstado());
+        usuarioMetaDiaria.setFecha(usuarioMetaDiariaDetails.getFecha());
+        usuarioMetaDiaria.setUsuario(usuarioMetaDiariaDetails.getUsuario());
+        
+        return ResponseEntity.ok(this.usuarioMetaDiariaRepository.save(usuarioMetaDiaria));
     }
 }

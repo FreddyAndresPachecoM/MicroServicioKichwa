@@ -7,11 +7,9 @@ package com.example.KichwaService.repository;
 
 import com.example.KichwaService.model.Palabra;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author Asrock Gamer
- */
+@Repository
 public interface PalabraRepository  extends JpaRepository<Palabra, Long>{
     
 }

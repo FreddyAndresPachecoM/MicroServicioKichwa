@@ -5,11 +5,14 @@
  */
 package com.example.KichwaService.controller;
 
+import com.example.KichwaService.exception.ResourceNotFoundException;
 import com.example.KichwaService.model.Leccion;
 import com.example.KichwaService.repository.ActividadRepository;
 import com.example.KichwaService.repository.LeccionRepository;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +35,15 @@ public class LeccionController {
         return this.leccionRepository.findAll();
     }
     
+    @GetMapping("/buscar/{id_leccion}")
+    @CrossOrigin
+    public ResponseEntity<Leccion> getLeccion(@PathVariable (value = "id_leccion") Long id_leccion)
+            throws ResourceNotFoundException{
+        Leccion leccion = leccionRepository.findById(id_leccion)
+                .orElseThrow(()-> new ResourceNotFoundException("Leccion no encontrada por el id :: "+id_leccion));
+        return ResponseEntity.ok().body(leccion);
+    }
+    
     @PostMapping("/crear")
     @CrossOrigin
     public Leccion crearLeccion(@RequestBody Leccion leccion){
@@ -46,8 +58,18 @@ public class LeccionController {
     
     @PutMapping("/modificar/{id_leccion}")
     @CrossOrigin
-    public Leccion modificarLeccion(@RequestBody Leccion leccion, @PathVariable Long id_leccion){
-        this.leccionRepository.deleteById(id_leccion);
-        return this.leccionRepository.save(leccion);
+//    public Leccion modificarLeccion(@RequestBody Leccion leccion, @PathVariable Long id_leccion){
+//        this.leccionRepository.deleteById(id_leccion);
+//        return this.leccionRepository.save(leccion);
+//    }
+    public ResponseEntity<Leccion> updateLeccion(@PathVariable (value = "id_leccion") Long id_leccion,
+            @Valid @RequestBody Leccion leccionDetails) throws ResourceNotFoundException{
+        Leccion leccion = leccionRepository.findById(id_leccion)
+                .orElseThrow(()-> new ResourceNotFoundException("Leccion no encontrado por el id :: "+id_leccion));
+        leccion.setNombre(leccionDetails.getNombre());
+        leccion.setTema(leccionDetails.getTema());
+        
+        return ResponseEntity.ok(this.leccionRepository.save(leccion));
     }
+    
 }

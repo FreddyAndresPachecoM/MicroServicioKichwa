@@ -6,6 +6,7 @@
 package com.example.KichwaService.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import lombok.*;
 
 @Data
@@ -23,7 +25,8 @@ import lombok.*;
 @Setter()
 
 @Entity
-public class Leccion {
+@Table(name = "leccion")
+public class Leccion implements Serializable {
     @JsonBackReference
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -46,6 +49,18 @@ public class Leccion {
         super();
         this.nombre = nombre;
     }
+
+    public Leccion(Tema tema, String nombre) {
+        this.tema = tema;
+        this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return "Leccion{" + "id=" + id + ", tema=" + tema + ", nombre=" + nombre + '}';
+    }
+    
+    
        
     
 }

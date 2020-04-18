@@ -5,17 +5,16 @@
  */
 package com.example.KichwaService.model;
 
+import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import lombok.*;
 
 @Data
@@ -27,7 +26,8 @@ import lombok.*;
 
 
 @Entity
-public class TemaActividad {
+@Table(name = "tema_actividad")
+public class TemaActividad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_tem_act")
@@ -53,11 +53,23 @@ public class TemaActividad {
     }
 
     public TemaActividad(boolean estado, Date fecha) {
+        super();
         this.estado = estado;
         this.fecha = fecha;
     }
-    
-    
+
+    public TemaActividad(ActividadUsuario actividadUsuario, Tema tema, boolean estado, Date fecha) {
+        super();
+        this.actividadUsuario = actividadUsuario;
+        this.tema = tema;
+        this.estado = estado;
+        this.fecha = fecha;
+    }
+
+    @Override
+    public String toString() {
+        return "TemaActividad{" + "id=" + id + ", actividadUsuario=" + actividadUsuario + ", tema=" + tema + ", estado=" + estado + ", fecha=" + fecha + '}';
+    }   
     
     
 }

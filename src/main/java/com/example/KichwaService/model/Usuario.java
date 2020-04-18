@@ -6,6 +6,7 @@
 package com.example.KichwaService.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.io.Serializable;
 import javax.persistence.*;
 import lombok.*;
 
@@ -17,7 +18,8 @@ import lombok.*;
 @Setter()
 
 @Entity
-public class Usuario {
+@Table(name = "usuario")
+public class Usuario implements Serializable {
     @JsonBackReference
     @Id
     @Column(name="id_usuario") 
@@ -45,6 +47,7 @@ public class Usuario {
 
     
     public Usuario(String correo, String name, String url_foto, String sexo, String password, String motivo) {
+        super();
         this.correo = correo;
         this.name = name;
         this.url_foto = url_foto;
@@ -57,6 +60,13 @@ public class Usuario {
         super();
         this.id = id;
     } 
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", correo=" + correo + ", name=" + name + ", url_foto=" + url_foto + ", sexo=" + sexo + ", password=" + password + ", motivo=" + motivo + '}';
+    }
+    
+    
     
 
 }

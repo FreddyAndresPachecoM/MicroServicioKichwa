@@ -5,10 +5,13 @@
  */
 package com.example.KichwaService.controller;
 
+import com.example.KichwaService.exception.ResourceNotFoundException;
 import com.example.KichwaService.model.Actividad;
 import com.example.KichwaService.repository.ActividadRepository;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +34,15 @@ public class ActividadController {
         return this.actividadRepository.findAll();
     }
     
+    @GetMapping("/buscar/{id_actividad}")
+    @CrossOrigin
+    public ResponseEntity<Actividad> getActividadById(@PathVariable (value = "id_actividad") Long id_actividad)
+            throws ResourceNotFoundException{
+        Actividad actividad = actividadRepository.findById(id_actividad)
+                .orElseThrow(()-> new ResourceNotFoundException("Actividad no encontrada por el id :: "+id_actividad));
+        return ResponseEntity.ok().body(actividad);
+    }
+    
     @PostMapping("/crear")
     @CrossOrigin
     public Actividad crearActividad(@RequestBody Actividad a){
@@ -45,10 +57,18 @@ public class ActividadController {
     
     @PutMapping("/modificar/{id_actividad")
     @CrossOrigin
-    public Actividad modificarActividad(@RequestBody Actividad a, @PathVariable Long id_actividad){
-        this.actividadRepository.deleteById(id_actividad);
-        return this.actividadRepository.save(a);
+//    public Actividad modificarActividad(@RequestBody Actividad a, @PathVariable Long id_actividad){
+//        this.actividadRepository.deleteById(id_actividad);
+//        return this.actividadRepository.save(a);
+//    }
+    public ResponseEntity<Actividad> updateActividad(@PathVariable (value = "id_actividad")Long id_actividad,
+            @Valid @RequestBody Actividad actividadDetails) throws ResourceNotFoundException{
+        Actividad actividad = actividadRepository.findById(id_actividad)
+                .orElseThrow(()-> new ResourceNotFoundException("Actividad no encontrada por el id :: "+id_actividad));
+        actividad.setDescripcion(actividadDetails.getDescripcion());
+        actividad.setNombre(actividadDetails.getNombre());
+        
+        return ResponseEntity.ok(this.actividadRepository.save(actividad));
     }
-
             
 }
