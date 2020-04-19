@@ -45,6 +45,15 @@ public class UsuarioController {
         return ResponseEntity.ok().body(usuario);
     }
     
+    @GetMapping("/buscarByCorreo/{correo}")
+    @CrossOrigin
+    public List<Usuario> getUsuarioByCorreo(@PathVariable (value = "correo")String correo){
+        
+        System.out.println("Correo: "+correo);        
+        
+        return usuarioRepository.getCorreosUsuariosLike(correo);
+    }
+    
 //    @RequestMapping(value = "/crear", method = RequestMethod.POST)
     @PostMapping("/crear")
     @CrossOrigin
@@ -68,7 +77,7 @@ public class UsuarioController {
                 .orElseThrow(()-> new ResourceNotFoundException("Usuario no encontrado por el id :: "+id_usuario));
         usuario.setCorreo(usuarioDetails.getCorreo());
         usuario.setMotivo(usuarioDetails.getMotivo());
-        usuario.setName(usuarioDetails.getName());
+        usuario.setNombre(usuarioDetails.getNombre());
         usuario.setPassword(usuarioDetails.getPassword());
         usuario.setSexo(usuarioDetails.getSexo());
         usuario.setUrl_foto(usuarioDetails.getUrl_foto());

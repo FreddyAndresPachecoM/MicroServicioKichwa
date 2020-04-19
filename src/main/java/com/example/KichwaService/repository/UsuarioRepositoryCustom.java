@@ -6,11 +6,11 @@
 package com.example.KichwaService.repository;
 
 import com.example.KichwaService.model.Usuario;
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long>, UsuarioRepositoryCustom{
-
+public interface UsuarioRepositoryCustom {
+    List<Usuario> getCorreosUsuariosLike(String correo);
 }

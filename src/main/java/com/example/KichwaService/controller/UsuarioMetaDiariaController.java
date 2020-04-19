@@ -40,9 +40,9 @@ public class UsuarioMetaDiariaController {
             throws ResourceNotFoundException{
             UsuarioMetaDiaria usuarioMetaDiaria= usuarioMetaDiariaRepository.findById(id_met_dia)
                     .orElseThrow(() -> new ResourceNotFoundException("UsuarioMetaDiaria not found for this id :: " + id_met_dia));
-        return ResponseEntity.ok().body(usuarioMetaDiaria);
-        
-    }    
+        return ResponseEntity.ok().body(usuarioMetaDiaria);        
+    }
+
     
     @PostMapping("/crear")
     @CrossOrigin

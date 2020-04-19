@@ -29,7 +29,7 @@ public class Usuario implements Serializable {
     @Column(name = "correo")
     private String correo;    
     @Column(name = "nombre")
-    private String name;  
+    private String nombre;  
     @Column(name = "url_foto")
     private String url_foto;
     @Column(name ="sexo")
@@ -46,10 +46,10 @@ public class Usuario implements Serializable {
 //    private Cuenta cuenta;
 
     
-    public Usuario(String correo, String name, String url_foto, String sexo, String password, String motivo) {
+    public Usuario(String correo, String nombre, String url_foto, String sexo, String password, String motivo) {
         super();
         this.correo = correo;
-        this.name = name;
+        this.nombre = nombre;
         this.url_foto = url_foto;
         this.sexo = sexo;
         this.password = password;
@@ -63,7 +63,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", correo=" + correo + ", name=" + name + ", url_foto=" + url_foto + ", sexo=" + sexo + ", password=" + password + ", motivo=" + motivo + '}';
+        return "Usuario{" + "id=" + id + ", correo=" + correo + ", nombre=" + nombre + ", url_foto=" + url_foto + ", sexo=" + sexo + ", password=" + password + ", motivo=" + motivo + '}';
     }
     
     
