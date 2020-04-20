@@ -45,13 +45,25 @@ public class UsuarioController {
         return ResponseEntity.ok().body(usuario);
     }
     
-    @GetMapping("/buscarByCorreo/{correo}")
+    @GetMapping("/buscarObjectByCorreo/{correo}")
     @CrossOrigin
     public List<Usuario> getUsuarioByCorreo(@PathVariable (value = "correo")String correo){
         
         System.out.println("Correo: "+correo);        
         
         return usuarioRepository.getCorreosUsuariosLike(correo);
+    }
+    
+    @GetMapping("/verificarUsuarioByCorreo/{correo}")
+    @CrossOrigin
+    public boolean verificaUsuario(@PathVariable (value="correo") String correo){
+        boolean bandUsu = false; 
+        if (usuarioRepository.getCorreosUsuariosLike(correo).isEmpty()){
+            bandUsu = false;
+        }else{
+            bandUsu = true;
+        }
+        return bandUsu;
     }
     
 //    @RequestMapping(value = "/crear", method = RequestMethod.POST)
