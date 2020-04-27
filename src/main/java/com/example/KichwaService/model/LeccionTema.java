@@ -28,7 +28,7 @@ import lombok.*;
 @Entity
 @Table(name = "leccion_tema")
 public class LeccionTema implements Serializable {
-    @JsonBackReference
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_lec_tem")

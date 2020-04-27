@@ -20,7 +20,7 @@ import lombok.*;
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable {
-    @JsonBackReference
+
     @Id
     @Column(name="id_usuario") 
     @GeneratedValue(strategy = GenerationType.AUTO)

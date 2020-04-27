@@ -43,6 +43,13 @@ public class PalabraController {
         return ResponseEntity.ok().body(palabra);
     }
     
+    @GetMapping("/buscarByNombre/{sig_esp}")
+    @CrossOrigin
+    public List<Palabra> getPalabraByNombre(@PathVariable (value = "sig_esp") String sig_esp){
+        System.out.println(""+sig_esp);
+        return this.palabraRepository.getPalabraLike(sig_esp);
+    }
+    
     @PostMapping("/crear")
     @CrossOrigin
     public Palabra crearPalabra(@RequestBody Palabra palabra){

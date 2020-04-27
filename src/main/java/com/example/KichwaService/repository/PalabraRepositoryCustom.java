@@ -6,10 +6,10 @@
 package com.example.KichwaService.repository;
 
 import com.example.KichwaService.model.Palabra;
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PalabraRepository  extends JpaRepository<Palabra, Long>, PalabraRepositoryCustom{
-    
+public interface PalabraRepositoryCustom {
+    List<Palabra> getPalabraLike(String sig_esp);
 }

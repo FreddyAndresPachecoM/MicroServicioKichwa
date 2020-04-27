@@ -11,6 +11,7 @@ import com.example.KichwaService.repository.UsuarioRepository;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,11 +21,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-//@RequestMapping(value = "/usuario", produces = "application/json")
-@RequestMapping("/usuario")
+@RequestMapping(value = "/usuario", produces = "application/json")
+//@RequestMapping("/usuario")
 public class UsuarioController {
     @Autowired
     UsuarioRepository usuarioRepository;
@@ -45,7 +47,7 @@ public class UsuarioController {
         return ResponseEntity.ok().body(usuario);
     }
     
-    @GetMapping("/buscarObjectByCorreo/{correo}")
+    @GetMapping("/buscarByCorreo/{correo}")
     @CrossOrigin
     public List<Usuario> getUsuarioByCorreo(@PathVariable (value = "correo")String correo){
         
@@ -66,12 +68,18 @@ public class UsuarioController {
         return bandUsu;
     }
     
-//    @RequestMapping(value = "/crear", method = RequestMethod.POST)
-    @PostMapping("/crear")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE, value = "/crear")
+//    @RequestMapping(value = "/crear", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin
-    public Usuario crearUsuario(@RequestBody Usuario usuario){
-        return this.usuarioRepository.save(usuario);
+    public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario){
+        Usuario newUsuario = usuarioRepository.save(usuario);
+                
+        return ResponseEntity.ok(newUsuario);
     }
+    
+    
     
 //    @RequestMapping(value = "/eliminar/{id_usuario}", method = RequestMethod.DELETE)
     @DeleteMapping("/eliminar/{id_usuario}")
